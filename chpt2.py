@@ -1,0 +1,16 @@
+import cv2
+import numpy as np
+img = cv2.imread("/Users/sandeep_munagala/Documents/opencv/opencv.PNG")
+img = cv2.resize(img,(480,360))
+imgGRAY = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+imgBLUR = cv2.GaussianBlur(imgGRAY,(5,5),10,100)
+imgCanny = cv2.Canny(img,100,100)
+imgDialation = cv2.dilate(imgCanny,np.ones((5,5),np.uint8),iterations=1)
+imgEroded = cv2.erode(imgDialation,np.ones((5,5),np.uint8),iterations=1)
+cv2.imshow("normal image",img)
+cv2.imshow("gray image",imgGRAY)
+cv2.imshow("blur image",imgBLUR)
+cv2.imshow("canny image",imgCanny)
+cv2.imshow("dialation image",imgDialation)
+cv2.imshow("erroded image",imgEroded)
+cv2.waitKey(0)
